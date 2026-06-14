@@ -40,7 +40,7 @@ export default function AddCommentForm({ articleId }: IProdId) {
     e.preventDefault();
     if (text == "") return toast.error("search is required");
     try {
-      await axios.post(`api/comments`, { text, articleId });
+      await axios.post(`/api/comments`, { text, articleId });
       router.refresh();
       setText("");
     } catch (error) {
