@@ -13,17 +13,18 @@ interface IPropsComment {
 }
 
 export default function CommentItem({ comment, userId }: IPropsComment) {
+  console.log("COMMENT ITEM:", comment);
   const [isopen, setopen] = useState(false);
-const router=useRouter()
+  const router = useRouter();
   const ModalHandeler = () => {
     setopen((prev) => !prev);
   };
   const commentDelet = async () => {
     try {
-     if(confirm("you want delete this comment, Are you sure?")){
-       await axios.delete(`/api/comments/${comment.id}`);
-       router.refresh()
-     }
+      if (confirm("you want delete this comment, Are you sure?")) {
+        await axios.delete(`/api/comments/${comment.id}`);
+        router.refresh();
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message || "Updata Comment failed");
@@ -35,8 +36,11 @@ const router=useRouter()
   return (
     <div className="mb-5 rounded-lg p-3 bg-gray-200 border-2 border-gray-300">
       <div className="flex items-center justify-between mb-2">
-        <strong className="text-gray-800 uppercase">
+        {/* <strong className="text-gray-800 uppercase">
           {comment.user.username}
+        </strong> */}
+        <strong className="text-gray-800 uppercase">
+          {comment.user?.username || "Unknown User"}
         </strong>
         <p className="bg-yellow-700 px-1 rounded-lg text-white">
           {new Date(comment.createdAt).toDateString()}
@@ -50,7 +54,10 @@ const router=useRouter()
             onClick={ModalHandeler}
             className="text-green-600 text-xl cursor-pointer me-3"
           />
-          <FaTrash onClick={commentDelet} className="text-red-600 text-xl cursor-pointer" />
+          <FaTrash
+            onClick={commentDelet}
+            className="text-red-600 text-xl cursor-pointer"
+          />
         </div>
       )}
 

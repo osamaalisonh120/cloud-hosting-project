@@ -139,18 +139,47 @@ if (!usersFromToken) return null;
     return null;
   }
 }
-export async function getDataSingleArticle(articelId:string):Promise<SingleArticle>{
+// export async function getDataSingleArticle(articelId:string):Promise<SingleArticle>{
 
  
-  const res = await fetch(    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${articelId}`,
+//   const res = await fetch(    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${articelId}`,
 
-    {cache:"no-store"})
+//     {cache:"no-store"})
  
- console.log(res)
+//  console.log(res)
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data')
+//   }
+ 
+//   return res.json()
+// }
+
+export async function getDataSingleArticle(
+  articelId: string
+): Promise<SingleArticle> {
+  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+  console.log(
+    "FULL URL:",
+    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${articelId}`
+  );
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${articelId}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  console.log("STATUS:", res.status);
+
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
- 
-  return res.json()
+
+  const data = await res.json();
+
+  console.log("ARTICLE DATA:", data);
+
+  return data;
 }
