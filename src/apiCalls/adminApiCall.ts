@@ -1,13 +1,14 @@
 import { Comment } from "@prisma/client";
 
 export async function getAllComments(token: string): Promise<Comment[]> {
-  const res = await fetch(`$/api/comments`, {
-    headers: {
-      Cookie: `jwtToken=${token}` // 👈 لازم C كبيرة
-    },
-    cache: "no-store",
-  
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comments`,
+    {
+      headers: {
+        Cookie: `jwtToken=${token}` // 👈 لازم C كبيرة
+      },
+      cache: "no-store",
+
+    });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -28,7 +29,7 @@ export async function getAllComments(token: string): Promise<Comment[]> {
 //  الكرتونة فوق  اللي الورقة في بحط (headers)
 
 //  بتقول معلومة
-// الجيب  في  بسكويت  ان 
+// الجيب  في  بسكويت  ان
 //  jwtToken اسمه
 //  التوكن وجواه
 
