@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-toastify';
@@ -43,7 +43,7 @@ const handleSubmit = async (e: FormEvent) => {
   if (!description) return toast.error("description is required");
 
   try {
-    await axios.post(`${DOMAIN}/api/articles`, { title, description });
+    await axios.post(`/api/articles`, { title, description });
 
     setTitle("");
     setDescription("");

@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
-import { DOMAIN } from '@/utils/constants';
+
 import axios from 'axios';
 interface IpropsModal{
     isopen:boolean,
@@ -22,7 +22,7 @@ export const UpdateCommentModal = ({isopen,ModalHandeler,text,commentId,setopenM
          e.preventDefault();
          if(updatedText=="") return toast.info("Please write something");
          try {
-            await axios.put(`${DOMAIN}/api/comments/${commentId}`,{text:updatedText})
+            await axios.put(`/api/comments/${commentId}`,{text:updatedText})
           router.refresh()
            setUpdatedText("");
            setopenModel(false)

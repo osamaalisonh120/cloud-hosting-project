@@ -3,7 +3,7 @@
 
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 interface IPropscomment{
   CommentId:number  
@@ -14,7 +14,7 @@ export default function DeleteCommentButton({ CommentId}:IPropscomment) {
 
     try {
      if(confirm("you want delete this comment, Are you sure?")){
-       await axios.delete(`${DOMAIN}/api/comments/${CommentId}`);
+       await axios.delete(`/api/comments/${CommentId}`);
        router.refresh()
         toast.success("comments deleted");
      }

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react"
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-toastify';
@@ -18,7 +18,7 @@ export default function RegisterForm() {
              if(password=="") return  toast.error("password is required");
              try {
                setoading(true)
-               await axios.post(`${DOMAIN}/api/users/register`,{username,email,password});
+               await axios.post(`/api/users/register`,{username,email,password});
                router.replace('/')
                 setoading(false)
                router.refresh()

@@ -5,7 +5,7 @@ import { UpdateCommentModal } from "../comments/UpdateCommentModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 interface IPropsComment {
   comment: CommentWithUser;
@@ -21,7 +21,7 @@ const router=useRouter()
   const commentDelet = async () => {
     try {
      if(confirm("you want delete this comment, Are you sure?")){
-       await axios.delete(`${DOMAIN}/api/comments/${comment.id}`);
+       await axios.delete(`/api/comments/${comment.id}`);
        router.refresh()
      }
     } catch (error) {

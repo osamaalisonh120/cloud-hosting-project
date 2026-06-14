@@ -1,6 +1,6 @@
 "use client";
 
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ export  default function LoginForm() {
          if(password=="") return  toast.error("password is required");
        try {
           setoading(true)
-         await  axios.post(`${DOMAIN}/api/users/login`,{email,password})
+         await  axios.post(`/api/users/login`,{email,password})
           router.replace('/')
           setoading(false)
           router.refresh();

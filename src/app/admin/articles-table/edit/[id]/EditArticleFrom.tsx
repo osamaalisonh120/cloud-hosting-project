@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-toastify';
@@ -23,7 +23,7 @@ export default function EditArticleFrom({ articleId,titles, descriptions}:IEditP
   if (!description) return toast.error("description is required");
 
   try {
-    await axios.put(`${DOMAIN}/api/articles/${articleId}`, { title, description });
+    await axios.put(`/api/articles/${articleId}`, { title, description });
 
    
 

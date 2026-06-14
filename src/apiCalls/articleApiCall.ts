@@ -1,11 +1,11 @@
 import { Article } from "@prisma/client";
-import { DOMAIN } from "@/utils/constants";
+
 import { IJWTpaylods, SingleArticle } from "@/utils/types";
 import jwt from "jsonwebtoken";
 export async function getDataArticle(pageNumber:string|undefined):Promise< Article[]> {
 // await new Promise((resolve) => setTimeout(resolve, 2000));
  
-  const res = await fetch(`${DOMAIN}/api/articles?pageNumber=${pageNumber}`, 
+  const res = await fetch(`/api/articles?pageNumber=${pageNumber}`, 
     {cache:"no-store"})
  
  
@@ -19,7 +19,7 @@ export async function getDataArticle(pageNumber:string|undefined):Promise< Artic
 export async function DataArticleCount():Promise< number> {
 // await new Promise((resolve) => setTimeout(resolve, 2000));
  
-  const res = await fetch(`${DOMAIN}/api/articles/count`,
+  const res = await fetch(`/api/articles/count`,
      {cache:"no-store"})
 
  
@@ -67,7 +67,7 @@ export async function DataArticleCount():Promise< number> {
 export async function ArticleSearch(searchText:string|undefined):Promise< Article[]> {
 
  
-  const res = await fetch(`${DOMAIN}/api/articles/search/?searchText=${searchText}`)
+  const res = await fetch(`/api/articles/search/?searchText=${searchText}`)
  
 
   if (!res.ok) {
@@ -141,7 +141,7 @@ if (!usersFromToken) return null;
 export async function getDataSingleArticle(articelId:string):Promise<SingleArticle>{
 
  
-  const res = await fetch(`${DOMAIN}/api/articles/${articelId}`,
+  const res = await fetch(`/api/articles/${articelId}`,
     {cache:"no-store"})
  
  console.log(res)

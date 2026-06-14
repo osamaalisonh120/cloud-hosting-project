@@ -3,7 +3,7 @@
 
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { DOMAIN } from "@/utils/constants";
+
 import axios from "axios";
 interface IPropsTable{
   articleId:number  
@@ -14,7 +14,7 @@ const DeleteArticleButton = ({articleId}:IPropsTable) => {
 
     try {
      if(confirm("you want delete this comment, Are you sure?")){
-       await axios.delete(`${DOMAIN}/api/articles/${articleId}`);
+       await axios.delete(`/api/articles/${articleId}`);
        router.refresh()
         toast.success("article deleted");
      }
